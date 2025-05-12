@@ -1,0 +1,14 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "To-do List node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Lucas Santos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
