@@ -1,22 +1,23 @@
 import express from "express";
 import path from "path";
-import routes from "./routes/routes.js"; // Corrigido para usar import com extensão .js
+
+import routes from "./routes/routes.js";
 import connectToDb from "./database/db.js";
 
-const __dirname = path.resolve();
-
-connectToDb(); // Conectar ao banco de dados
 const app = express();
 const port = 3000;
+const __dirname = path.resolve();
 
-// Configuração do EJS como motor de visualização
-app.set("view engine", "ejs");
+connectToDb();
 
-// Configuração de arquivos estáticos
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Adicione esta linha para servir arquivos estáticos da pasta "public"
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.urlencoded()); // Para receber dados do formulário
-// Usando as rotas importadas
+app.set("view engine", "ejs");
+
 app.use(routes);
 
 app.listen(port, () => {
