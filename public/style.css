@@ -117,6 +117,28 @@ li:hover {
   margin-bottom: 4px;
 }
 
+/* Estilo de tarefa concluída — central com ícone */
+.task-content a.check-true {
+  color: #2ecc71;
+  text-decoration: line-through;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.task-content a.check-true::before {
+  content: "\f26e"; /* ícone check-circle do Bootstrap Icons */
+  font-family: "bootstrap-icons";
+  color: #2ecc71;
+  font-size: 1.1rem;
+}
+
+/* Remover ícone duplicado na li */
+li.check-true::before {
+  content: none !important;
+}
+
 .created-at {
   font-size: 0.85rem;
   color: #777;
@@ -182,6 +204,11 @@ li:hover {
   margin: 15px 0;
 }
 
+#card p strong {
+  font-weight: bold;
+  color: #2b6777;
+}
+
 #card hr {
   border: none;
   height: 1px;
@@ -220,4 +247,104 @@ li:hover {
 
 .action-yes:hover {
   background-color: #27ae60;
+}
+
+/* Mensagem de alerta */
+.message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.message p {
+  margin: 0;
+  flex: 1;
+}
+
+.message span#close-message {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.message-success {
+  background-color: #e6f9f0;
+  color: #2ecc71;
+  border-left: 6px solid #2ecc71;
+}
+
+.message-danger {
+  background-color: #ffe6e6;
+  color: #ff4d4d;
+  border-left: 6px solid #ff4d4d;
+}
+
+.task-content a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  margin-bottom: 4px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 30px; /* espaço para o quadradinho */
+}
+
+/* Quadrado para representar o checkbox */
+.task-content a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Estilo quando a tarefa está concluída */
+.task-content a.check-true {
+  color: #2ecc71;
+  text-decoration: line-through;
+}
+
+/* Checkbox marcado */
+.task-content a.check-true::before {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  content: "\f26e"; /* ícone check-circle do Bootstrap Icons */
+  font-family: "bootstrap-icons";
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+  line-height: 18px;
+}
+
+/* Estilo para tarefa NÃO concluída */
+.task-content a.check-false {
+  color: #333; /* cor padrão do texto */
+  text-decoration: none;
+}
+
+/* Caixa verde vazia */
+.task-content a.check-false::before {
+  content: "";
+  background-color: transparent;
+  border: 2px solid #2ecc71; /* borda verde */
+  border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
 }

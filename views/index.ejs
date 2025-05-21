@@ -12,10 +12,23 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap"
     />
+ <title>To Do List</title>
 
-    <title>To Do List</title>
-  </head>
-  <body>
+</head>
+
+
+<body>
+  
+  <% if (message != "") {%>
+
+  <section class="message message-<%= type %>">
+    <p><%= message %></p>
+    <span id="close-message"><i class="bi bi-x-lg"></i>
+</i>
+</i></span>
+  </section>
+ <% } %>
+
     <header>
       <% if (task == null) { %>
       <h1>To Do List</h1>
@@ -43,9 +56,9 @@
       <% } else { %>
       <ul>
         <% taskList.forEach(task => { %>
-        <li>
+        <li class="check-<%= task.check %>">       
           <div class="task-content">
-            <a href="/"> <%= task.task %> </a>
+            <a href="/check/<%= task._id %>" class="check-<%= task.check %>"> <%= task.task %> </a>
             <span class="created-at"
               >Criado em <%= new Date(task.date).toLocaleDateString("pt-BR")
               %></span
@@ -71,7 +84,7 @@
         <h2>Confirmação</h2>
         <hr />
         <p>
-          Você tem certeza que deseja deletar a tarefa: <%= taskDelete.task %>?
+          Você tem certeza que deseja deletar a tarefa <%= taskDelete.task %>?
         </p>
 
         <div class="action-buttons">
