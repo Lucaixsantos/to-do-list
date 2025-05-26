@@ -18,36 +18,27 @@
 
 
 <body>
-  
-  <% if (message != "") {%>
+  <% if (taskDelete != null) { %>
+    <%- include('./componentes/modalDel') %>
+  <% } %>
 
-  <section class="message message-<%= type %>">
-    <p><%= message %></p>
-    <span id="close-message"><i class="bi bi-x-lg"></i>
-</i>
-</i></span>
-  </section>
- <% } %>
+  <% if (message != "") {%>
+    <section class="message message-<%= type %>">
+      <p><%= message %></p>
+      <span id="close-message"><i class="bi bi-x-lg"></i></span>
+    </section>
+  <% } %>
 
     <header>
       <% if (task == null) { %>
-      <h1>To Do List</h1>
-      <form action="/create" method="post">
-        <input
-          type="text"
-          name="task"
-          id="task"
-          placeholder="insira uma tarefa"
-        />
-        <button id="addButton" type="submit">Adicionar</button>
-      </form>
+
+<%- include('./componentes/form', { tittleForm: "To Do List", action: "create", value: "", idBtn: "addButton", nameBtn: "Adicionar" }) %>
+
       <%} else { %>
-      <h1>Atualizar Tarefa</h1>
-      <form action="/updateOne/<%= task._id %>" method="post">
-        <input type="text" name="task" id="task" value="<%= task.task %>" />
-        <button id="addButton" type="submit">Atualizar</button>
-      </form>
+
+        <%- include('./componentes/form', { tittleForm: "Editar Tarefa", action: "updateOne/" + task._id, value: task.task, idBtn: "updatebutton", nameBtn: "Atualizar" }) %>
       <% } %>
+
     </header>
 
     <section id="tasks">
@@ -77,27 +68,6 @@
       </ul>
       <% } %>
     </section>
-    <% if (taskDelete != null) { %>
-    <section id="nodal">
-      <div id="card">
-        <a href="/" class="close-button">x</a>
-        <h2>Confirmação</h2>
-        <hr />
-        <p>
-          Você tem certeza que deseja deletar a tarefa <%= taskDelete.task %>?
-        </p>
-
-        <div class="action-buttons">
-          <a href="/" class="action-button action-no">Não</a>
-          <a
-            href="/deleteOne/<%= taskDelete._id %>"
-            class="action-button action-yes"
-            >Sim</a
-          >
-        </div>
-      </div>
-    </section>
-    <% } %>
     <script src="/script.js"></script>
   </body>
 </html>
